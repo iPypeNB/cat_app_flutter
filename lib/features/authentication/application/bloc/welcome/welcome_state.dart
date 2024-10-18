@@ -13,5 +13,17 @@ final class InitialState extends WelcomeState {
 }
 
 final class AuthenticationSuccessState extends WelcomeState {
-  const AuthenticationSuccessState();
+  const AuthenticationSuccessState({required this.contentNotification});
+
+  final String contentNotification;
+}
+
+final class AuthenticationFailureState extends WelcomeState {
+  const AuthenticationFailureState({required this.contentNotification});
+
+  final String contentNotification;
+}
+
+final class LoadingState extends WelcomeState {
+  const LoadingState();
 }
