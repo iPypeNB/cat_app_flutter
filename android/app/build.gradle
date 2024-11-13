@@ -8,15 +8,15 @@ plugins {
 android {
     namespace = "com.example.cat_app_flutter"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "25.1.8937393"
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_17
-        targetCompatibility = JavaVersion.VERSION_1_17
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_17
+        jvmTarget = 17
     }
 
     defaultConfig {
