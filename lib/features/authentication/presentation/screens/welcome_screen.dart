@@ -1,5 +1,6 @@
 import 'package:cat_app_flutter/features/authentication/application/bloc/welcome/welcome_bloc.dart';
-import 'package:cat_app_flutter/features/authentication/utils/constants/authentication_strings.dart';
+import 'package:cat_app_flutter/features/authentication/presentation/organisms/auth_organisms.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -32,24 +33,7 @@ class _ViewState extends State<_View> {
   Widget build(BuildContext context) {
     return BlocListener<WelcomeBloc, WelcomeState>(
       listener: _listener,
-      child: Center(
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: colorButton,
-          ),
-          onPressed: () {
-            context.read<WelcomeBloc>().add(
-                  const GetUserEvent(
-                    email: 'felipe@correo.com',
-                    phone: '3151234567',
-                  ),
-                );
-          },
-          child: Text(
-            AuthenticationStrings.I.login,
-          ),
-        ),
-      ),
+      child: const WelcomeOrganism(),
     );
   }
 

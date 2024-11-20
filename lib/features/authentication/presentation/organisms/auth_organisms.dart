@@ -1,0 +1,1 @@
+export 'package:cat_app_flutter/features/authentication/presentation/organisms/welcome_organism.dart';
