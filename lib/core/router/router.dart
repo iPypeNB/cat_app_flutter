@@ -12,7 +12,7 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: _welcomeRoute,
-      builder: (context, state) => const TutoScreen(),
+      builder: (context, state) => const WelcomeScreen(),
     ),
   ],
 );

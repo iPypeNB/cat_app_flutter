@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class WelcomeOrganism extends StatelessWidget {
-  const WelcomeOrganism({super.key});
+  const WelcomeOrganism({
+    super.key,
+    this.onPasswordChanged,
+    this.onEmailChanged,
+  });
+
+  final Function(String)? onPasswordChanged;
+  final Function(String)? onEmailChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +21,12 @@ class WelcomeOrganism extends StatelessWidget {
             padding: const EdgeInsets.only(right: 20.0),
             child: Container(
               decoration: const BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10.0),
-                    bottomRight: Radius.circular(10.0),
-                  )),
+                color: Colors.amber,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10.0),
+                  bottomRight: Radius.circular(10.0),
+                ),
+              ),
               child: const Padding(
                 padding: EdgeInsets.all(5.0),
                 child: Icon(Icons.arrow_forward),
@@ -31,8 +39,11 @@ class WelcomeOrganism extends StatelessWidget {
         return SingleChildScrollView(
           child: ConstrainedBox(
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: const IntrinsicHeight(
-              child: _WelcomeBody(),
+            child: IntrinsicHeight(
+              child: _WelcomeBody(
+                onPasswordChanged: onPasswordChanged,
+                onEmailChanged: onEmailChanged,
+              ),
             ),
           ),
         );
@@ -42,7 +53,10 @@ class WelcomeOrganism extends StatelessWidget {
 }
 
 class _WelcomeBody extends StatelessWidget {
-  const _WelcomeBody();
+  const _WelcomeBody({this.onPasswordChanged, this.onEmailChanged});
+
+  final Function(String)? onPasswordChanged;
+  final Function(String)? onEmailChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -80,10 +94,11 @@ class _WelcomeBody extends StatelessWidget {
                   Form(
                     child: Column(
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
                           child: _CustomTextFormField(
                             text: 'Email address',
+                            onChanged: onEmailChanged,
                           ),
                         ),
                         Padding(
@@ -96,6 +111,7 @@ class _WelcomeBody extends StatelessWidget {
                                 icon: const Icon(Icons.remove_red_eye),
                               ),
                               textInfo: 'Forgot Password?',
+                              onChanged: onPasswordChanged,
                             ),
                           ),
                         ),
@@ -181,16 +197,19 @@ class _WelcomeBody extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: RichText(
-                        text: const TextSpan(
-                            text: 'Don\'t have account? ',
-                            children: [
+                      text: const TextSpan(
+                        text: 'Don\'t have account? ',
+                        children: [
                           TextSpan(
-                              text: 'Sign Up',
-                              style: TextStyle(
-                                color: Colors.amber,
-                                fontWeight: FontWeight.bold,
-                              ))
-                        ])),
+                            text: 'Sign Up',
+                            style: TextStyle(
+                              color: Colors.amber,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -207,11 +226,15 @@ class _CustomTextFormField extends StatelessWidget {
     required this.text,
     this.trailingButton,
     this.textInfo,
+    this.onChanged,
+    this.focusNode,
   });
 
   final String text;
   final Widget? trailingButton;
   final String? textInfo;
+  final Function(String)? onChanged;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -230,6 +253,8 @@ class _CustomTextFormField extends StatelessWidget {
           ),
         ),
         TextFormField(
+          focusNode: focusNode,
+          onChanged: onChanged,
           decoration: InputDecoration(
             suffixIcon: trailingButton,
             filled: true,

@@ -1,3 +1,4 @@
+import 'package:cat_app_flutter/features/authentication/application/bloc/login/login_bloc.dart';
 import 'package:cat_app_flutter/features/authentication/application/bloc/welcome/welcome_bloc.dart';
 import 'package:cat_app_flutter/features/authentication/presentation/organisms/auth_organisms.dart';
 
@@ -11,7 +12,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => GetIt.instance.get<WelcomeBloc>(),
+      create: (_) => GetIt.instance.get<LoginBloc>(),
       child: const Scaffold(
         body: _View(),
       ),
@@ -31,9 +32,16 @@ class _ViewState extends State<_View> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<WelcomeBloc, WelcomeState>(
+    return BlocListener<LoginBloc, LoginState>(
       listener: _listener,
-      child: const WelcomeOrganism(),
+      child: WelcomeOrganism(
+        onEmailChanged: (value) {
+
+        },
+        onPasswordChanged: (value) {
+
+        },
+      ),
     );
   }
 
