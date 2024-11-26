@@ -1,3 +1,4 @@
+import 'package:cat_app_flutter/core/utils/extensions/widget_extension.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeOrganism extends StatelessWidget {
@@ -5,10 +6,18 @@ class WelcomeOrganism extends StatelessWidget {
     super.key,
     this.onPasswordChanged,
     this.onEmailChanged,
+    this.passwordValidateMode,
+    this.passwordValidator,
+    this.onPressLoginButton,
+    required this.formKey,
   });
 
   final Function(String)? onPasswordChanged;
   final Function(String)? onEmailChanged;
+  final String? Function(String?)? passwordValidator;
+  final AutovalidateMode? passwordValidateMode;
+  final VoidCallback? onPressLoginButton;
+  final GlobalKey<FormState> formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +52,10 @@ class WelcomeOrganism extends StatelessWidget {
               child: _WelcomeBody(
                 onPasswordChanged: onPasswordChanged,
                 onEmailChanged: onEmailChanged,
+                passwordValidateMode: passwordValidateMode,
+                passwordValidator: passwordValidator,
+                onPressLoginButton: onPressLoginButton,
+                formKey: formKey,
               ),
             ),
           ),
@@ -53,10 +66,21 @@ class WelcomeOrganism extends StatelessWidget {
 }
 
 class _WelcomeBody extends StatelessWidget {
-  const _WelcomeBody({this.onPasswordChanged, this.onEmailChanged});
+  const _WelcomeBody({
+    this.onPasswordChanged,
+    this.onEmailChanged,
+    this.passwordValidateMode,
+    this.passwordValidator,
+    this.onPressLoginButton,
+    required this.formKey,
+  });
 
   final Function(String)? onPasswordChanged;
+  final String? Function(String?)? passwordValidator;
+  final AutovalidateMode? passwordValidateMode;
   final Function(String)? onEmailChanged;
+  final VoidCallback? onPressLoginButton;
+  final GlobalKey<FormState> formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +116,7 @@ class _WelcomeBody extends StatelessWidget {
                     height: 40.0,
                   ),
                   Form(
+                    key: formKey,
                     child: Column(
                       children: [
                         Padding(
@@ -112,6 +137,8 @@ class _WelcomeBody extends StatelessWidget {
                               ),
                               textInfo: 'Forgot Password?',
                               onChanged: onPasswordChanged,
+                              validator: passwordValidator,
+                              autoValidateMode: passwordValidateMode,
                             ),
                           ),
                         ),
@@ -124,7 +151,11 @@ class _WelcomeBody extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: onPressLoginButton != null ? () => validateFormThenAction(
+                        context: context,
+                        formKey: formKey,
+                        action: onPressLoginButton
+                      ): null,
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.amber,
                           shape: const RoundedRectangleBorder(
@@ -227,14 +258,16 @@ class _CustomTextFormField extends StatelessWidget {
     this.trailingButton,
     this.textInfo,
     this.onChanged,
-    this.focusNode,
+    this.validator,
+    this.autoValidateMode = AutovalidateMode.onUnfocus,
   });
 
   final String text;
   final Widget? trailingButton;
   final String? textInfo;
   final Function(String)? onChanged;
-  final FocusNode? focusNode;
+  final String? Function(String?)? validator;
+  final AutovalidateMode? autoValidateMode;
 
   @override
   Widget build(BuildContext context) {
@@ -253,8 +286,9 @@ class _CustomTextFormField extends StatelessWidget {
           ),
         ),
         TextFormField(
-          focusNode: focusNode,
           onChanged: onChanged,
+          validator: validator,
+          autovalidateMode: autoValidateMode,
           decoration: InputDecoration(
             suffixIcon: trailingButton,
             filled: true,

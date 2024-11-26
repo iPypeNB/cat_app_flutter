@@ -7,4 +7,7 @@ class AuthenticationStrings extends Strings {
 
   String get login => 'Iniciar sesion';
 
+  /// ERRORS
+  String get passwordNotContainsLowerOrUpperCaseLetters =>
+      'la contraseña debe contener mayusculas y minusculas';
 }

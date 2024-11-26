@@ -1,4 +1,5 @@
 import 'package:cat_app_flutter/features/authentication/application/bloc/login/login_bloc.dart';
+import 'package:cat_app_flutter/features/authentication/application/bloc/temp/temp_bloc.dart';
 import 'package:cat_app_flutter/features/authentication/application/bloc/welcome/welcome_bloc.dart';
 import 'package:cat_app_flutter/features/authentication/domain/repositories/user_repository.dart';
 import 'package:cat_app_flutter/features/authentication/domain/use_cases/get_user_use_case.dart';
@@ -13,6 +14,7 @@ Future<void> initializer() async {
   // bloc
   serviceLocator.registerFactory(() => WelcomeBloc(getUserUseCase: serviceLocator()));
   serviceLocator.registerFactory(() => LoginBloc());
+  serviceLocator.registerFactory(() => TempBloc());
 
   // use cases
   serviceLocator.registerLazySingleton(() => GetUserUseCase(userRepository: serviceLocator()));

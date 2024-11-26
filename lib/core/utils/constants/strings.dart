@@ -6,4 +6,6 @@ class Strings {
   String get empty => '';
 
   String get yes => 'si';
+
+  String get genericFieldError => 'Verifica la información ingresada';
 }

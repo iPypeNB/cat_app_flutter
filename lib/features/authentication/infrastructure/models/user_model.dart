@@ -1,4 +1,5 @@
 import 'package:cat_app_flutter/features/authentication/domain/entities/user_entity.dart';
+import 'package:cat_app_flutter/shared/domain/value_objects/base/password_value_object.dart';
 
 class UserModel extends UserEntity {
   UserModel({
@@ -6,6 +7,7 @@ class UserModel extends UserEntity {
     required super.birthdate,
     required super.phone,
     required this.id,
+    required super.password,
     super.name,
   });
 
@@ -15,6 +17,7 @@ class UserModel extends UserEntity {
         phone: json[_phoneCodingKey],
         id: json[_idCodingKey],
         name: json[_nameCodingKey],
+        password: PasswordValueObject(json[_passwordCodingKey]),
       );
 
   Map<String, dynamic> toMap() => {
@@ -23,6 +26,7 @@ class UserModel extends UserEntity {
         _birthdateCodingKey: birthdate,
         _phoneCodingKey: phone,
         _nameCodingKey: name,
+        _passwordCodingKey: password
       };
 
   final String id;
@@ -33,4 +37,5 @@ class UserModel extends UserEntity {
   static const String _emailCodingKey = 'email';
   static const String _birthdateCodingKey = 'birthdate';
   static const String _nameCodingKey = 'name';
+  static const String _passwordCodingKey = 'password';
 }

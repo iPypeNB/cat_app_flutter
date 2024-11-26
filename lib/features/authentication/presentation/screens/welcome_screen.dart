@@ -27,21 +27,35 @@ class _View extends StatefulWidget {
 }
 
 class _ViewState extends State<_View> {
-  Color? colorButton;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    context.read<LoginBloc>().add(const AddAnalyticsContext('página Login'));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final loginBloc = BlocProvider.of<LoginBloc>(context, listen: true);
+
     return BlocListener<LoginBloc, LoginState>(
       listener: _listener,
       child: WelcomeOrganism(
+        formKey: formKey,
         onEmailChanged: (value) {
           final event = ChangeEmailEvent(value: value);
-          context.read<LoginBloc>().add(event);
+          loginBloc.add(event);
         },
         onPasswordChanged: (value) {
           final event = ChangePasswordEvent(value: value);
-          context.read<LoginBloc>().add(event);
+          loginBloc.add(event);
         },
+        passwordValidateMode: AutovalidateMode.disabled,
+        passwordValidator: (_) {
+          return loginBloc.state.data.passwordError;
+        },
+        onPressLoginButton: () {},
       ),
     );
   }

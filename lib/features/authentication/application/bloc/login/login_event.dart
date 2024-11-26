@@ -1,8 +1,7 @@
-
 part of 'login_bloc.dart';
 
 sealed class LoginEvent {
- const LoginEvent();
+  const LoginEvent();
 }
 
 final class ChangePasswordEvent extends LoginEvent {
@@ -15,4 +14,10 @@ final class ChangeEmailEvent extends LoginEvent {
   final String value;
 
   const ChangeEmailEvent({required this.value});
+}
+
+final class AddAnalyticsContext extends LoginEvent {
+  const AddAnalyticsContext([this.context]);
+
+  final String? context;
 }
