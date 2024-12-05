@@ -17,7 +17,7 @@ class CreateUserUseCase {
         return userRepository.createUser(user);
       },
       (failure) {
-        return Right(ServerFailure());
+        return const Right(ServerFailure());
       },
     );
   }

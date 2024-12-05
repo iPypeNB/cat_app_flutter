@@ -1,5 +1,5 @@
 import 'package:cat_app_flutter/features/authentication/domain/entities/user_entity.dart';
-import 'package:cat_app_flutter/shared/domain/value_objects/base/password_value_object.dart';
+import 'package:cat_app_flutter/shared/domain/value_objects/password_value_object.dart';
 
 class UserModel extends UserEntity {
   UserModel({

@@ -20,3 +20,6 @@ final class NotContainsLowerCaseLetters extends RegularExpressionFailure {
   const NotContainsLowerCaseLetters([super.message]);
 }
 
+final class NotContainsMinimumCharacters extends RegularExpressionFailure {
+  const NotContainsMinimumCharacters([super.message]);
+}

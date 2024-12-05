@@ -3,5 +3,4 @@ abstract class RegularExpressions {
 
   static RegExp get identifyMinimumLowerCase => RegExp(r'[a-z]');
 
-
 }

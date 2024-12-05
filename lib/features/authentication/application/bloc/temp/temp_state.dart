@@ -10,7 +10,7 @@ final class TempState extends Equatable {
 }
 
 final class InitialState extends TempState {
-  const InitialState() : super(data: const TempDto.empty());
+  InitialState() : super(data: TempDto.empty());
 }
 
 final class DataTempUpdated extends TempState {

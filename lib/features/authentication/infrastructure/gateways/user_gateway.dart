@@ -32,7 +32,7 @@ class UserGateway implements UserRepository {
 
       return Left(request);
     } on ServerFailure {
-      return Right(ServerFailure());
+      return const Right(ServerFailure());
     }
   }
 

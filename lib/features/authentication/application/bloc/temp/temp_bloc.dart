@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cat_app_flutter/features/authentication/application/dtos/temp_dto.dart';
+import 'package:cat_app_flutter/shared/domain/value_objects/password_value_object.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,7 +10,7 @@ part 'temp_event.dart';
 
 
 class TempBloc extends Bloc<TempEvent, TempState> {
-  TempBloc() : super(const InitialState()) {
+  TempBloc() : super(InitialState()) {
     _setUp();
   }
 
@@ -30,7 +31,7 @@ class TempBloc extends Bloc<TempEvent, TempState> {
 
   FutureOr<void> _onChangePasswordEvent(ChangePasswordEvent event, Emitter<TempState> emit) {
     final newData = state.data.copyWith(
-      password: event.newPassword,
+      password: PasswordValueObject(event.newPassword),
     );
     final newState = DataTempUpdated(
       data: newData

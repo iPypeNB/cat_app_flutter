@@ -6,11 +6,15 @@ class TempOrganism extends StatelessWidget {
     required this.onChangePassword,
     required this.onChangeEmail,
     required this.onPressTemp,
+    required this.passwordValidator,
+    this.passwordValidateMode = AutovalidateMode.disabled,
   });
 
   final Function(String)? onChangeEmail;
   final Function(String)? onChangePassword;
+  final String? Function(String?)? passwordValidator;
   final VoidCallback onPressTemp;
+  final AutovalidateMode passwordValidateMode;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +22,7 @@ class TempOrganism extends StatelessWidget {
       child: Column(
         children: [
           TextFormField(
+            key: Key('temp-organism-email-field'),
             decoration: const InputDecoration(
                 label: Text(
               'correo',
@@ -25,6 +30,8 @@ class TempOrganism extends StatelessWidget {
             onChanged: onChangeEmail,
           ),
           TextFormField(
+            autovalidateMode: passwordValidateMode,
+            validator: passwordValidator,
             decoration: const InputDecoration(
                 label: Text(
               'password',

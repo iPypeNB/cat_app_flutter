@@ -122,6 +122,7 @@ class _WelcomeBody extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: _CustomTextFormField(
+                            key: const Key('email_input'),
                             text: 'Email address',
                             onChanged: onEmailChanged,
                           ),
@@ -130,6 +131,7 @@ class _WelcomeBody extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: IntrinsicHeight(
                             child: _CustomTextFormField(
+                              key: const Key('password_input'),
                               text: 'Password',
                               trailingButton: IconButton(
                                 onPressed: () {},
@@ -254,6 +256,7 @@ class _WelcomeBody extends StatelessWidget {
 
 class _CustomTextFormField extends StatelessWidget {
   const _CustomTextFormField({
+    super.key,
     required this.text,
     this.trailingButton,
     this.textInfo,

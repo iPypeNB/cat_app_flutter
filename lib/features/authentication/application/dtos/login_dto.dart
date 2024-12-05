@@ -1,6 +1,6 @@
-import 'package:cat_app_flutter/features/authentication/application/dtos/base_dto.dart';
+import 'package:cat_app_flutter/shared/application/dtos/base_dto.dart';
 import 'package:cat_app_flutter/features/authentication/utils/constants/authentication_strings.dart';
-import 'package:cat_app_flutter/shared/domain/value_objects/base/password_value_object.dart';
+import 'package:cat_app_flutter/shared/domain/value_objects/password_value_object.dart';
 
 final class LoginDto extends BaseDto {
   LoginDto.empty()

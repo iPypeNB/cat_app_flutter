@@ -1,5 +1,5 @@
 import 'package:cat_app_flutter/core/utils/constants/routes.dart';
-import 'package:cat_app_flutter/features/authentication/presentation/screens/welcome_screen.dart';
+import 'package:cat_app_flutter/features/authentication/presentation/screens/temp_screen.dart';
 import 'package:go_router/go_router.dart';
 
 const _initialRoute = AppRoutes.baseRoute + AppRoutes.welcomeRoute;
@@ -11,7 +11,7 @@ final router = GoRouter(
   routes: [
     GoRoute(
       path: _welcomeRoute,
-      builder: (context, state) => const WelcomeScreen(),
+      builder: (context, state) => const TempScreen(),
     ),
   ],
 );

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:cat_app_flutter/features/authentication/application/dtos/dtos.dart';
-import 'package:cat_app_flutter/shared/domain/value_objects/base/password_value_object.dart';
+import 'package:cat_app_flutter/shared/domain/value_objects/password_value_object.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

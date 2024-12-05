@@ -36,6 +36,10 @@ class _View extends StatelessWidget {
 
                 context.read<TempBloc>().add(event);
               },
+              passwordValidateMode: AutovalidateMode.onUserInteraction,
+              passwordValidator: (_) {
+                return context.read<TempBloc>().state.data.passwordError;
+              },
               onChangeEmail: (value) {
                 final event = ChangeEmailEvent(newEmail: value);
 
@@ -45,6 +49,9 @@ class _View extends StatelessWidget {
 
               },
             ),
+            const Text(
+              'Registrarse'
+            ),
           ],
         ),
       ),
@@ -53,8 +60,8 @@ class _View extends StatelessWidget {
 
   void _listener(BuildContext context, state) {
     if (state is DataTempUpdated) {
-      print(state.data.email);
-      print(state.data.password);
+      debugPrint(state.data.email);
+      debugPrint(state.data.password.getOrNull());
     }
   }
 }
